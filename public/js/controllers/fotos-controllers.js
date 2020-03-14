@@ -1,8 +1,12 @@
-//modulo 'alurapic' em index e controller 'FotosController' que esta tambem no index
-angular.module('alurapic').controller('FotosController',function($scope){
-    //definicao do controller
-    $scope.foto = {
-        titulo:'Cachorro Akamaru',
-        url:'https://4.bp.blogspot.com/-E_9AxCqIXSA/TxSmRH79v1I/AAAAAAAAAAM/P_PXAOxDyss/s1600/300px-Akamaru.jpg'
-    };
+angular.module('alurapic').controller('FotosController', function($scope,$http) {
+
+    $scope.fotos = [];
+    //criando uma promessa
+    const promise = $http.get('/v1/fotos');
+    //caso for comprida ela ira retornar os dados de 'v1/fotos'
+    promise.then(function(success){
+        $scope.fotos = success.data;
+    }).catch(function(error){
+        console.error(error);
+    });
 });

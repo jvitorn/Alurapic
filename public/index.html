@@ -6,14 +6,27 @@
         <title>Alurapic</title>
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">  
+        <!-- Js -->
         <script src="js/lib/angular.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/controllers/fotos-controllers.js"></script>
     </head>
     <body ng-controller="FotosController">
         <div class="container">
-            <h1 class="text-center">Alurapic</h1>
-            <img class="img-responsive center-block" src="{{foto.url}}" alt="{{foto.titulo}}">
+            <!-- Titulo -->
+            <div class="jumbotron">
+                <h1 class="text-center">Alurapic</h1>
+            </div>
+            <!-- painel 1 -->
+            <div class="panel panel-primary col-md-2" ng-repeat="foto in fotos">
+                <div class="panel-heading">
+                    <h3 class="h3 panel-title text-center">{{foto.titulo}}</h3>
+                </div>
+                <div class="panel-body">
+                    <img class="img-responsive center-block" src="{{foto.url}}">
+                </div>
+            </div>
+            
         </div> <!-- fim container -->        
     </body>
 </html>
