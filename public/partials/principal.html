@@ -1,15 +1,17 @@
 <div class="jumbotron">
 	<h1 class="text-center">Alurapic</h1>
 </div>
-<p class="alert alert-info" ng-show="mensagem.length">
+
+<p ng-show="mensagem.length" class="alert alert-info">
 	{{mensagem}}
 </p>
+
 <div class="row">
 	<div class="col-md-12">
 		<form>
 			<div class="input-group">
 				<span class="input-group-btn">
-					<a href="/fotos/new" class="btn btn-success" type="button">
+					<a href="/fotos/new" class="btn btn-primary" type="button">
 						Nova foto
 					</a>
 				</span>
@@ -20,10 +22,13 @@
 </div> <!-- fim row -->
 
 <div class="row">
-    <meu-painel class="col-md-6 painel-animado" ng-repeat="foto in fotos | filter: filtro" titulo="{{foto.titulo}}">
-		<minha-foto url="{{foto.url}}" alt="{{foto.titulo}}"></minha-foto>
-		<br>
-		<a href="fotos/edit/{{foto._id}}" class="btn btn-primary btn-block">Editar</a>
-		<button ng-click="remover(foto)" class="btn btn-remover btn-block">Remover</button>
+    <meu-painel class="col-md-2 painel-animado" ng-repeat="foto in fotos | filter: filtro" titulo="{{foto.titulo}}">
+        <minha-foto url="{{foto.url}}" alt="{{foto.titulo}}"></minha-foto>
+
+		<a class="btn btn-primary btn-block" href="/fotos/edit/{{foto._id}}">
+			Editar
+		</a>
+		<!-- <button class="btn btn-danger btn-block" ng-click="remover(foto)">Remover</button> -->
+		<meu-botao-perigo acao="remover(foto)" nome="Remover"></meu-botao-perigo>
     </meu-painel>
 </div>
