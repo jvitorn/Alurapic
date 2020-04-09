@@ -7,15 +7,18 @@ angular.module('meusServicos',['ngResource'])
         });
 })
 //$q -> criação de promisses 
-.factory('cadastroDeFotos',function(recursoFoto,$q){
+.factory('cadastroDeFotos',function(recursoFoto,$q,$rootScope){
 
     let servico = {};
+
+    let evento = 'fotoCadastrada';
 
     servico.cadastrar = function(foto){
         return $q(function(resolve,reject){
             //caso existir esse id ele ira atualizar as informações 
             if(foto._id){
                 recursoFoto.update({fotoId:foto._id},foto,function(){
+                    $rootScope.$broadcast(evento);
                     resolve({
                         mensagem:'Foto '+ foto.titulo + ' atualizada com sucesso!',
                         inclusao:false
@@ -30,6 +33,7 @@ angular.module('meusServicos',['ngResource'])
             //se nao existir ele ira criar uma nova informação de foto no banco 
             else {
                 recursoFoto.save(foto,function(){
+                    $rootScope.$broadcast(evento);
                     resolve({
                         mensagem:'Foto ' + foto.titulo + ' Incluida com sucesso ',
                         inclusao:true

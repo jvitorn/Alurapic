@@ -22,6 +22,7 @@ angular.module('alurapic')
 					$scope.mensagem = retorno.mensagem;
 					//verificando se é uma inclusao
 					if(retorno.mensagem) $scope.foto = {} ; 
+					$scope.$broadcast('fotoCadastrada');
 				})
 				.catch(function(retorno){
 					$scope.mensagem = retorno.mensagem;
